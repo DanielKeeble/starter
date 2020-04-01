@@ -1,11 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "danielkeeble/starter",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "description": "A project starting point.",
     "license": "MIT",
     "require": {
         "php": "^7.4",
