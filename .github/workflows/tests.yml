@@ -1,0 +1,32 @@
+name: Tests
+on: [push]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: whoisthis
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup PHP, with composer and extensions
+      uses: shivammathur/setup-php@v1
+      with:
+        php-version: '7.4'
+        extensions: mbstring, dom, fileinfo, bcmath, gd, zip
+    - name: Cache PHP dependencies
+      uses: actions/cache@v1
+      with:
+        path: vendor
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+    - name: Install PHP dependencies
+      run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+    - name: Copy env
+      run: cp .env.ci .env
+    - name: Run tests
+      run: vendor/bin/phpunit
