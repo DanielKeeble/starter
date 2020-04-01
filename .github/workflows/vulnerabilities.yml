@@ -1,0 +1,21 @@
+name: Vulnerabilities
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup PHP, with composer and extensions
+      uses: shivammathur/setup-php@v1
+      with:
+        php-version: '7.4'
+        extensions: mbstring, dom, fileinfo, bcmath, gd, zip
+    - name: Cache PHP dependencies
+      uses: actions/cache@v1
+      with:
+        path: vendor
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+    - name: Install PHP dependencies
+      run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+    - name: Check for PHP vulnerabilities
+      run: vendor/bin/security-checker security:check
