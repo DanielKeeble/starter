@@ -50,6 +50,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "cs-fix": "vendor/bin/php-cs-fixer fix",
+        "check-security": "vendor/bin/security-checker security:check",
+        "test": "vendor/bin/phpunit --colors=always",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
