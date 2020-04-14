@@ -1,4 +1,4 @@
-name: Vulnerabilities
+name: PHP audit
 on: [push]
 jobs:
   lint:

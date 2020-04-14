@@ -1,4 +1,4 @@
-name: Vulnerabilities
+name: Yarn audit
 on: [push]
 jobs:
   lint:
