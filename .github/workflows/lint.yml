@@ -1,7 +1,7 @@
-name: Lint
+name: Lint PHP
 on: [push]
 jobs:
-  lint:
+  lint-php:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
