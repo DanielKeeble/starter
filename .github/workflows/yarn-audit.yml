@@ -10,7 +10,7 @@ jobs:
       with:
         php-version: '7.4'
         extensions: mbstring, dom, fileinfo, bcmath, gd, zip
-    - name: Cache PHP dependencies
+    - name: Cache npm dependencies
       uses: actions/cache@v1
       with:
         path: vendor
