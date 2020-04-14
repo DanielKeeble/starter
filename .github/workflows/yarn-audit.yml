@@ -1,4 +1,4 @@
-name: PHP audit
+name: Vulnerabilities
 on: [push]
 jobs:
   lint:
@@ -14,8 +14,8 @@ jobs:
       uses: actions/cache@v1
       with:
         path: vendor
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
-    - name: Install PHP dependencies
-      run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-    - name: Run code style checks
-      run: vendor/bin/php-cs-fixer fix --dry-run
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+    - name: Install npm dependencies
+      run: yarn
+    - name: Check for npm vulnerabilities
+      run: yarn audit
