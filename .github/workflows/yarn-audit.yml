@@ -1,7 +1,7 @@
 name: Yarn audit
 on: [push]
 jobs:
-  lint:
+  yarn-audit:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

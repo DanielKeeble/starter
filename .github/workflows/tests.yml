@@ -1,7 +1,7 @@
-name: Tests
+name: PHP tests
 on: [push]
 jobs:
-  tests:
+  php-tests:
     runs-on: ubuntu-latest
     services:
       mysql:
