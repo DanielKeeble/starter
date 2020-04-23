@@ -26,6 +26,8 @@ jobs:
         key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
     - name: Install PHP dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+    - name: Validate Composer
+      run: composer validate
     - name: Lint
       run: vendor/bin/php-cs-fixer fix --dry-run
     - name: Check for PHP vulnerabilities
